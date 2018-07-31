@@ -1,4 +1,4 @@
-import gender from '../../globals/common-enums';
+import gender from '../../Globals/common-enums';
 
 export default {
     seed() {
