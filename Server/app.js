@@ -4,8 +4,14 @@ import {join} from 'path';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import { urlencoded, json } from 'body-parser';
+import mongoose from 'mongoose';
+import mongooseConfig from './mongoose-seeder';
 import index from '../routes/index';
 import createError from "http-errors";
+
+mongooseConfig(mongoose);
+
+mongoose.connect(process.env.MONGO_URI);
 
 const app = express();
 const server = app.listen(process.env.PORT);
