@@ -4,11 +4,11 @@ import {join} from 'path';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import { urlencoded, json } from 'body-parser';
-
 import index from '../routes/index';
+import createError from "http-errors";
 
 const app = express();
-const server = app.listen(3000);
+const server = app.listen(process.env.PORT);
 
 // express configurations
 app.use(morgan('dev'));
@@ -17,26 +17,14 @@ app.use(urlencoded({ extended: false }));
 app.use(json());
 app.use(express.static(join(__dirname, 'client')));
 
+// All undefined api routes should return a 404
+app.route('/:url(api/*)')
+    .get((req, res, next) => {
+        next(createError(404));
+    });
 
-app.use('/', index);
-
-app.set('view engine', 'jade');
-// catch 404 and forward to error handler
-// app.use(function(req, res, next) {
-//   var err = new Error('Not Found');
-//   err.status = 404;
-//   next(err);
-// });
-
-// error handler
-// app.use(function(err, req, res, next) {
-//   // set locals, only providing error in development
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get('env') === 'development' ? err : {};
-//
-//   // render the error page
-//   res.status(err.status || 500);
-//   res.render('error');
-// });
+// All other routes should redirect to the index.html
+app.route('/*')
+    .get((req, res) => res.sendFile(join(__dirname, '..', 'client', 'index.html')));
 
 export default app;
