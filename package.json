@@ -31,6 +31,7 @@
     "express-param-objectid": "^1.0.0",
     "http-errors": "^1.7.0",
     "http-reject-empty": "^1.0.0",
+    "lodash": "^4.17.10",
     "mongoose": "^4.7.7",
     "mongoose-paginate": "^5.0.3",
     "mongoose-plugin-seed": "^0.4.0",
