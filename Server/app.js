@@ -1,36 +1,21 @@
 import 'dotenv-extended/config';
 import express from 'express';
-import {join} from 'path';
-import morgan from 'morgan';
-import cookieParser from 'cookie-parser';
-import { urlencoded, json } from 'body-parser';
 import mongoose from 'mongoose';
-import mongooseConfig from './mongoose-seeder';
-import index from '../routes/index';
-import createError from "http-errors";
+import mongooseSeeder from './mongoose';
+import socketIO from 'socket.io';
+import expressConfiguration from './express';
 
-mongooseConfig(mongoose);
+mongooseSeeder(mongoose);
 
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGO_DB_PATH)
+    .then(() => console.log(`Connected successfully to db: ${process.env.MONGO_DB_PATH}`))
+    .catch(() => console.log(`An error occurred while trying to connect to db: ${process.env.MONGO_DB_PATH}`))
 
 const app = express();
 const server = app.listen(process.env.PORT);
 
-// express configurations
-app.use(morgan('dev'));
-app.use(cookieParser());
-app.use(urlencoded({ extended: false }));
-app.use(json());
-app.use(express.static(join(__dirname, 'client')));
+const socket = socketIO.listen(server);
 
-// All undefined api routes should return a 404
-app.route('/:url(api/*)')
-    .get((req, res, next) => {
-        next(createError(404));
-    });
-
-// All other routes should redirect to the index.html
-app.route('/*')
-    .get((req, res) => res.sendFile(join(__dirname, '..', 'client', 'index.html')));
+expressConfiguration(app, socket);
 
 export default app;

@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { createSeedModel } from 'mongoose-plugin-seed';
 import seed from './user.seed';
 import mongoosePaginate from 'mongoose-paginate';
-import gender from '../../Globals/common-enums';
+import genders from '../../Globals/common-enums';
 
 const { Schema } = mongoose;
 
@@ -29,7 +29,7 @@ const userSchema = new Schema( {
     },
     gender: {
         type: String,
-        enum: gender,
+        enum: genders,
         required: true
     },
     height: {

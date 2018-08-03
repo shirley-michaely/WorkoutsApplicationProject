@@ -1,6 +1,8 @@
-const gender = {
-    MALE: 0,
-    FEMALE: 1
-};
+// const gender = {
+//     MALE: 0,
+//     FEMALE: 1
+// };
 
-export default gender;
+const genders = ['Male', 'Female'];
+
+export default genders;

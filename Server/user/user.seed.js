@@ -8,7 +8,7 @@ export default {
             age: 22,
             email: 'shirley@gmail.com',
             password: '1234',
-            gender: gender.FEMALE,
+            gender: gender[1],
             height: 162,
             isadmin: true
         },
@@ -18,7 +18,7 @@ export default {
                 age: 26,
                 email: 'yakir@gmail.com',
                 password: '1234',
-                gender: gender.MALE,
+                gender: gender[0],
                 height: 175,
                 isadmin: true
             },
@@ -28,7 +28,7 @@ export default {
                 age: 23,
                 email: 'liron@gmail.com',
                 password: '1234',
-                gender: gender.FEMALE,
+                gender: gender[1],
                 height: 167,
                 isadmin: true
             }];
