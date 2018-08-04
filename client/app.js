@@ -6,6 +6,8 @@ import 'mdi/css/materialdesignicons.css';
 import 'angular-material/angular-material.css';
 import controllers from './controllers';
 
+import './style.less';
+
 angular.module('workouts', [
     angularMaterial,
     uiRouter,

@@ -53,7 +53,7 @@ export default {
         new ContextReplacementPlugin(/moment[\\]locale$/, /en/)
     ],
     devServer: {
-        port: 9393,
+        port: 3000,
         hot: true,
         inline: true,
         contentBase: './client',
