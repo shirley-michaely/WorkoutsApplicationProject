@@ -1,3 +1,27 @@
-<md-content flex layout="column">
-   this is the main content
+<md-content class="main" flex layout="column">
+    <md-list flex>
+        <div flex layout="row" layout-wrap layout-align="space-around">
+            <md-list-item ng-repeat="workout in workouts | orderBy: '-date' track by workout._id" flex>
+                <md-card layout-padding flex>
+                    <md-card-header-text layout="column">
+                        <span class="md-headline">{{workout.title}}</span>
+                    </md-card-header-text>
+                    <md-card-title>
+                        <md-card-title-text>
+                           <span>Difficulty: {{workout.difficulty}}</span><span>Recommended for: {{workout.gender }}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <div style="column-count: 1; column-gap:40px; column-rule: 1px solid lightgrey">
+                            {{workout.description}}
+                        </div>
+                        <a ng-href="https://twitter.com/intent/tweet?screen_name=Workout&text=Checkworkout this ex for {{workout.title}} ! {{workout.description}}"
+                           class="twitter-mention-button" data-show-count="false">Tweet to Workout</a>
+                        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </md-card-content>
+                    <span class="author-description">Written by: {{workout.author}}, {{workout.date | amCalendar}}</span>
+                </md-card>
+            </md-list-item>
+        </div>
+    </md-list>
 </md-content>
