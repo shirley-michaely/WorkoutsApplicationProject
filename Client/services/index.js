@@ -7,5 +7,7 @@ angular.module(MODULE_NAME, [angularResource]);
 
 require('./user.service');
 require('./logged-in-user');
+require('./workout.service');
+
 
 export default MODULE_NAME;

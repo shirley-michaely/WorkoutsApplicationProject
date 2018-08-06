@@ -13,4 +13,3 @@ export function get({ params: { id } }) {
     return Workout.findById(id)
         .then(empty);
 }
-

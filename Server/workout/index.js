@@ -13,3 +13,4 @@ router.get('/', controller.index);
 router.get('/:id', controller.get);
 
 export default router;
+
