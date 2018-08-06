@@ -3,6 +3,6 @@
 //     FEMALE: 1
 // };
 
-const genders = ['Male', 'Female'];
+const genders = ['Male', 'Female', 'All Genders'];
 
 export default genders;

@@ -7,19 +7,33 @@
                         <span class="md-headline">{{workout.title}}</span>
                     </md-card-header-text>
                     <md-card-title>
-                        <md-card-title-text>
-                           <span>Difficulty: {{workout.difficulty}}</span><span>Recommended for: {{workout.gender }}</span>
+                        <md-card-title-text layout="row">
+                           <i ng-class="getSuitableIconDescription(workout)">
+                              <md-tooltip>Recommended for {{workout.gender}}</md-tooltip>
+                           </i>
+                           <span>Difficulty: {{workout.difficulty}} ({{workout.difficulty | level}})
                         </md-card-title-text>
                     </md-card-title>
                     <md-card-content>
-                        <div style="column-count: 1; column-gap:40px; column-rule: 1px solid lightgrey">
-                            {{workout.description}}
-                        </div>
-                        <a ng-href="https://twitter.com/intent/tweet?screen_name=Workout&text=Checkworkout this ex for {{workout.title}} ! {{workout.description}}"
-                           class="twitter-mention-button" data-show-count="false">Tweet to Workout</a>
-                        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                       <div layout="row">
+                          <div class="workout-description" layout="column" flex>
+                              <span>{{workout.description}}</span>
+                          </div>
+                            <div class="workout-video-container" layout="column" flex>
+                                 <iframe width="420" height="315" ng-src="{{getVideoUrl(workout)}}" frameborder="1" allowfullscreen></iframe>
+                              </div>
+                           </div>
                     </md-card-content>
-                    <span class="author-description">Written by: {{workout.author}}, {{workout.date | amCalendar}}</span>
+                   <div layout="row" class="external-description" flex>
+                      <div layout="column" flex>
+                         <a ng-href="https://twitter.com/intent/tweet?screen_name=Workout&text=An amazing workout {{workout.title}} ! {{workout.description}}"
+                            class="twitter-mention-button" data-show-count="false">Tweet to Workout</a>
+                         <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                      </div>
+                      <div layout="column" flex>
+                         <span class="author-description">Written by: {{workout.author}}, {{workout.date | amCalendar}}</span>
+                      </div>
+                   </div>
                 </md-card>
             </md-list-item>
         </div>

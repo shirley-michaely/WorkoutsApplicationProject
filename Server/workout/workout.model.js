@@ -10,6 +10,10 @@ const WorkoutSchema = new Schema({
         type: String,
         required: true
     },
+    video: {
+        type: String,
+        required: false
+    },
     description: {
         type: String,
         required: true

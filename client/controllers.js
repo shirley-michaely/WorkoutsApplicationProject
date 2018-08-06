@@ -8,5 +8,6 @@ require('./layout/layout');
 require('./main/main');
 require('./register/register');
 require('./login/login');
+require('./filters/index');
 
 export default CONTROLLERS_MODULE;

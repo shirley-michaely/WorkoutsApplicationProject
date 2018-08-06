@@ -1,3 +1,5 @@
+import genders from './../../Globals/common-enums';
+
 export default {
     seed() {
         return [{
@@ -9,7 +11,8 @@ export default {
             Upward Phase: Press upwards through your arms while maintaining a rigid torso and head aligned with your spine. For extra strength think about pushing the floor away from you. Do not allow your low back to sag or your hips to hike upwards. Continue pressing until the arms are fully extended at the elbows.
             An alternative position is to turn your hands to face forwards and keep your your elbows close to your sides during the downward phase. This shifts the emphasis from the chest muscles onto the triceps and may reduce stresses in the shoulder joint. 
             Pushing through the heel and outside surface of your palm provides greater force in your press and stability to your shoulders.`,
-            gender: "Female",
+            gender: genders[0],
+            video: "https://www.youtube.com/embed/_l3ySVKYVJ8",
             date: new Date('August 3, 2018 12:01:00'),
             author: 'Yakir'
         },
@@ -21,7 +24,8 @@ export default {
                 Downward Phase: Slowly lower your body towards the floor while maintaining a rigid torso and head aligned with your spine. Do not allow your low back to sag or your hips to hike upwards during this downward phase, contract your glutes (butt) and quadriceps (thigh) muscles to create stability for your core. Continue to lower yourself until your chest or chin touch the mat or floor. Your elbows should remain close to the sides of your body or be allowed to flare outwards slightly.
                 Upward Phase: Press upwards through your arms while maintaining a rigid torso and head aligned with your spine. As your press upwards, extend your left hip to lift your left foot off the floor, keeping the knee extended. Attempt to avoid rotation in your hip as you raise the left leg off the floor. Do not allow your low back to sag or your hips to hike upwards. Continue pressing until the arms are fully extended at the elbows and your left leg is extended off the floor. Hold this position briefly before returning to your starting position. Repeat with your opposite leg
                 Pushing through the heel and outside surface of your palm provides greater force in your press and stability to your shoulders.`,
-                gender: "Male",
+                video: "https://www.youtube.com/embed/BBdRzqsYX1g",
+                gender: genders[2],
                 date: new Date('August 3, 2018 12:01:00'),
                 author: 'Liron'
             },
@@ -32,7 +36,8 @@ export default {
                 Upward Phase: Exhale, gently contract your abdominal / core muscles to stiffen your spine and lift your hips off the mat, but keeping contact with your knee, and head aligned with your spine.
                 Lowering Phase: Inhale and gently return yourself to your starting position.
                 Exercise Variation: You can increase the exercise intensity by increasing the length of time you are in the raised position.`,
-                gender: "Male",
+                video: "https://www.youtube.com/embed/K2VljzCC16g",
+                gender: genders[1],
                 date: new Date('August 3, 2018 12:01:00'),
                 author: 'Shirley'
             }];
