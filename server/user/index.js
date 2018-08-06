@@ -10,5 +10,6 @@ router.use(paginate.middleware(10, 50));
 
 router.get('/', controller.index);
 router.get('/:id', controller.get);
+router.post('/', controller.create);
 
 export default router;

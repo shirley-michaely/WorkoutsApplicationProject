@@ -5,6 +5,7 @@ import uiRouter from 'angular-ui-router';
 import 'mdi/css/materialdesignicons.css';
 import 'angular-material/angular-material.css';
 import controllers from './controllers';
+import services from './services';
 
 import './style.less';
 
@@ -13,7 +14,8 @@ angular.module('workouts', [
     uiRouter,
     'angularMoment',
     'ngAnimate',
-    controllers
+    controllers,
+    services
 ])
     .config(($urlRouterProvider, $locationProvider, $mdThemingProvider) => {
         $mdThemingProvider.theme('default')

@@ -13,3 +13,12 @@ export function get({ params: { id } }) {
   return User.findById(id)
     .then(empty);
 }
+
+export function create({ body }, res) {
+    return User.create(body)
+        .then(() => {
+            res.status(201);
+
+            return Promise.resolve();
+        });
+}

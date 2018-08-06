@@ -1,0 +1,45 @@
+<div flex="column">
+    <md-card layout="row" flex="100" layout-padding>
+        <h1>Register </h1>
+        <div flex="row">
+            <md-input-container>
+                <input type="text" placeholder="First Name" ng-model="user.firstname" required>
+            </md-input-container>
+            <md-input-container>
+                <input type="text" placeholder="Last Name" ng-model="user.lastname" required>
+            </md-input-container>
+            <md-input-container>
+                <input type="number" placeholder="Age" ng-model="user.age" min="1" max="120" required>
+            </md-input-container>
+            <md-input-container>
+                <input type="email" placeholder="Email Address" ng-model="user.email" required>
+            </md-input-container>
+            <div flex="row">
+                <p>Gender:</p>
+                <md-radio-group name="gender" ng-model="user.gender" aria-label="Gender" required>
+                    <md-radio-button value="Male">Male</md-radio-button>
+                    <md-radio-button value="Female">Female</md-radio-button>
+                </md-radio-group>
+            </div>
+        </div>
+        <div flex="row">
+            <md-input-container>
+                <input type="number" placeholder="Height (in cm)" ng-model="user.height" min="100" max="300">
+            </md-input-container>
+            <md-input-container>
+                <input type="number" placeholder="Weight" ng-model="user.weight" min="20" max="500">
+            </md-input-container>
+            <md-input-container>
+                <input type="text" placeholder="Password" ng-model="user.password" required>
+            </md-input-container>
+            <md-checkbox ng-model="user.isadmin" aria-label="IS Admin">
+                Is Admin
+            </md-checkbox>
+        </div>
+
+        <div flex="row">
+            <md-button ng-click="register()">Register</md-button>
+            <md-button ui-sref="layout.login">Registered Already? Just Login!</md-button>
+        </div>
+    </md-card>
+</div>
