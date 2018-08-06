@@ -3,10 +3,14 @@ import angular from 'angular';
 const CONTROLLER = 'registerController';
 
 angular.module('workouts.controllers')
-    .controller(CONTROLLER, ($scope, $mdDialog, $state, User) => {
+    .controller(CONTROLLER, ($scope, $mdDialog, $state, User, LoggedInUser) => {
         $scope.register = () => User.save($scope.user).$promise
             .then(() => {
-                //todo: make the login in here and move to main page
+                return User.login($scope.user).$promise
+                    .then(result => {
+                        LoggedInUser.login(result);
+                        $state.transitionTo('layout.main', {}, { location: 'replace' });
+                    })
             })
             .catch(() => {
                 return $mdDialog.show($mdDialog.alert({
