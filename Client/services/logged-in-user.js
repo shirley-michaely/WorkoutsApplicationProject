@@ -18,7 +18,7 @@ angular.module('workouts.services')
 
         const get = () => loggedUser;
 
-        const ensureLogged = () => {
+        const ensureUserIsLogged = () => {
             if (!loggedUser) {
                 $state.transitionTo('layout.login', {}, { location: 'replace' });
             }
@@ -34,6 +34,6 @@ angular.module('workouts.services')
             onLogout: cb => {
                 onLogout.push(cb)
             },
-            ensureLogged
+            ensureUserIsLogged
         };
     });

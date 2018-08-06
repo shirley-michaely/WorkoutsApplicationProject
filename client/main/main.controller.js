@@ -2,7 +2,9 @@ import angular from 'angular';
 
 const CONTROLLER = 'mainController';
 
-angular.module('workouts.controllers').controller(CONTROLLER, ($scope) => {
+angular.module('workouts.controllers').controller(CONTROLLER, ($scope, LoggedInUser) => {
+    LoggedInUser.ensureUserIsLogged();
+
     $scope.workouts = [{
         title: 'Push-up',
         difficulty: 5,
