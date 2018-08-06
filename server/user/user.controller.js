@@ -22,3 +22,16 @@ export function create({ body }, res) {
             return Promise.resolve();
         });
 }
+
+export function login({ body }, res) {
+    return User.find(body)
+        .then(wantedUser => {
+            if (wantedUser.length !== 1) {
+                return Promise.reject();
+            }
+
+            res.status(201);
+
+            return wantedUser[0];
+        });
+}
