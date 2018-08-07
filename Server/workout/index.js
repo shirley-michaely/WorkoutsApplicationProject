@@ -8,12 +8,11 @@ export default io => {
     router.param('id', objectId);
     router.use(paginate.middleware(10, 50));
 
-    // Gets and index
+    // Get requests
     router.get('/', controller.index);
-    router.get('/:id', controller.get);
-
-    router.get('/:id/recommended', controller.getRecommendedWorkouts);
     router.get('/workoutsByGender', controller.getWorkoutsByGender);
+    router.get('/:id', controller.get);
+    router.get('/:id/recommended', controller.getRecommendedWorkouts);
 
     // Insert, update, delete
     router.post('/',controller.create(io))

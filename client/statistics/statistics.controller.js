@@ -37,7 +37,6 @@ angular.module('workouts.controllers').controller(STATISTICS_CONTROLLER, ($scope
                 workout.Difficulty = + workout.difficulty;
             });
 
-            // scale the range of the data
             x.domain(workouts.map(d => { return d.Title; }));
             y.domain([0, d3.max(workouts, d => { return d.Difficulty; })]);
 
@@ -91,7 +90,6 @@ angular.module('workouts.controllers').controller(STATISTICS_CONTROLLER, ($scope
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        // get the recipes' data
         Workout.workoutsByGender().$promise
             .then(result => {
                 let groupedWorkouts = result;
@@ -100,9 +98,8 @@ angular.module('workouts.controllers').controller(STATISTICS_CONTROLLER, ($scope
                     d.WorkoutsCount = + d.count;
                 });
 
-                // scale the range of the data
-                x.domain(data.map(d => { return d.Gender; }));
-                y.domain([0, d3.max(data, d => { return d.WorkoutsCount; })]);
+                x.domain(groupedWorkouts.map(d => { return d.Gender; }));
+                y.domain([0, d3.max(groupedWorkouts, d => { return d.WorkoutsCount; })]);
 
                 // add axis
                 svg.append("g")
@@ -125,9 +122,8 @@ angular.module('workouts.controllers').controller(STATISTICS_CONTROLLER, ($scope
                     .style("text-anchor", "end")
                     .text("WorkoutsCount");
 
-                // Add bar chart
                 svg.selectAll("bar")
-                    .data(data)
+                    .data(groupedWorkouts)
                     .enter()
                     .append("rect")
                     .attr("class", "bar")
