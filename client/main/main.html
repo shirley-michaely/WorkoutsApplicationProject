@@ -1,41 +1,42 @@
 <md-content class="main" flex layout="column">
-    <md-card ng-if="recomendedWorkout" layout-padding flex>
-        <md-card-header-text class="recommended-header" layout="row">
-            <i class="mdi mdi-star mdi-36px">
-                <md-tooltip>Recommended for you</md-tooltip>
-            </i>
-            <span class="md-headline">{{recomendedWorkout.title}}</span>
-        </md-card-header-text>
-        <md-card-title>
-            <md-card-title-text layout="row">
-                <i ng-class="getSuitableIconDescription(recomendedWorkout)">
-                    <md-tooltip>Recommended for {{recomendedWorkout.gender}}</md-tooltip>
-                </i>
-                <span>Difficulty: {{recomendedWorkout.difficulty}} ({{recomendedWorkout.difficulty | level}})
-            </md-card-title-text>
-        </md-card-title>
-        <md-card-content>
-            <div layout="row">
-                <div class="workout-description" layout="column" flex>
-                    <span>{{recomendedWorkout.description}}</span>
-                </div>
-                <div class="workout-video-container" layout="column" flex>
-                    <iframe width="420" height="315" ng-src="{{getVideoUrl(recomendedWorkout)}}" frameborder="1" allowfullscreen></iframe>
-                </div>
-            </div>
-        </md-card-content>
-        <div layout="row" class="external-description" flex>
-            <div layout="column" flex>
-                <a ng-href="https://twitter.com/intent/tweet?screen_name=Workout&text=An amazing workout {{recomendedWorkout.title}} ! {{recomendedWorkout.description}}"
-                   class="twitter-mention-button" data-show-count="false">Tweet to Workout</a>
-                <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
-            <div layout="column" flex>
-                <span class="author-description">Written by: {{recomendedWorkout.author}}, {{recomendedWorkout.date | amCalendar}}</span>
-            </div>
-        </div>
-    </md-card>
+
     <md-list flex>
+        <md-card ng-if="recomendedWorkout" layout-padding flex>
+            <md-card-header-text class="recommended-header" layout="row">
+                <i class="mdi mdi-star mdi-36px">
+                    <md-tooltip>Recommended for you</md-tooltip>
+                </i>
+                <span class="md-headline">{{recomendedWorkout.title}}</span>
+            </md-card-header-text>
+            <md-card-title>
+                <md-card-title-text layout="row">
+                    <i ng-class="getSuitableIconDescription(recomendedWorkout)">
+                        <md-tooltip>Recommended for {{recomendedWorkout.gender}}</md-tooltip>
+                    </i>
+                    <span>Difficulty: {{recomendedWorkout.difficulty}} ({{recomendedWorkout.difficulty | level}})
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <div layout="row">
+                    <div class="workout-description" layout="column" flex>
+                        <span>{{recomendedWorkout.description}}</span>
+                    </div>
+                    <div class="workout-video-container" layout="column" flex>
+                        <iframe width="420" height="315" ng-src="{{getVideoUrl(recomendedWorkout)}}" frameborder="1" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </md-card-content>
+            <div layout="row" class="external-description" flex>
+                <div layout="column" flex>
+                    <a ng-href="https://twitter.com/intent/tweet?screen_name=Workout&text=An amazing workout {{recomendedWorkout.title}} ! {{recomendedWorkout.description}}"
+                       class="twitter-mention-button" data-show-count="false">Tweet to Workout</a>
+                    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+                <div layout="column" flex>
+                    <span class="author-description">Written by: {{recomendedWorkout.author}}, {{recomendedWorkout.date | amCalendar}}</span>
+                </div>
+            </div>
+        </md-card>
         <div flex layout="row" layout-wrap layout-align="space-around">
             <md-list-item ng-repeat="workout in workouts | orderBy: '-date' track by workout._id" flex>
                 <md-card layout-padding flex>

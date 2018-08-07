@@ -1,0 +1,29 @@
+.statistics {
+  column-count: 2;
+  column-gap:25px;
+  column-rule: 1px solid lightgrey;
+
+  h3{
+    font-family: cursive;
+  }
+
+  .bar {
+    transition: fill 1s;
+    fill: lightblue;
+  }
+
+  .bar:hover {
+    fill: cornflowerblue;
+  }
+
+  .axis {
+    font: 10px cursive;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: optimizeSpeed;
+  }
+}
