@@ -66,6 +66,12 @@ export function getRecommendedWorkouts({ params: { id } }) {
 
                 // The recommended workout will be the one that matches the user's gender, and has the difficulties average of the user's uploaded workouts
                 var recommendedWorkout = suggestedWorkouts.find(x => x.difficulty === difficultiesAverage);
+
+                if (!recommendedWorkout)
+                {
+                    recommendedWorkout = suggestedWorkouts.find(x => x.difficulty < difficultiesAverage);
+                }
+
                 //recommendedWorkout = suggestedWorkouts[0];
                 return recommendedWorkout ? Promise.resolve(recommendedWorkout)
                     : Promise.reject();
