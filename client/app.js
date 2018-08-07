@@ -6,12 +6,14 @@ import 'mdi/css/materialdesignicons.css';
 import 'angular-material/angular-material.css';
 import controllers from './controllers';
 import services from './services';
+import ngMap from 'ngmap';
 
 import './style.less';
 
 angular.module('workouts', [
     angularMaterial,
     uiRouter,
+    ngMap,
     'angularMoment',
     'ngAnimate',
     controllers,
