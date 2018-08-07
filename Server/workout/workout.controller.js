@@ -77,3 +77,14 @@ export function getRecommendedWorkouts({ params: { id } }) {
                     : Promise.reject();
             }));
 }
+
+export function getWorkoutsByGender() {
+    return Workout.aggregate([
+        {
+            $group: {
+                _id: '$gender',
+                count: { $sum: 1 }
+            }
+        }
+    ]);
+}

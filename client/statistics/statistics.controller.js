@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 const STATISTICS_CONTROLLER = 'statisticsController';
 
-angular.module('workouts.controllers').controller(STATISTICS_CONTROLLER, ($scope, $state) => {
+angular.module('workouts.controllers').controller(STATISTICS_CONTROLLER, ($scope, Workout) => {
         $scope.generateWorkoutsGraphs = () => {
             $.get('api/workouts', generateGraphs);
         };
@@ -77,15 +77,6 @@ angular.module('workouts.controllers').controller(STATISTICS_CONTROLLER, ($scope
         const width = 400 - margin.left - margin.right;
         const height = 400 - margin.top - margin.bottom;
 
-        const groupedWorkoutsByGender = _.groupBy(workouts, 'gender');
-
-        const gendersKeys = _.keys(groupedWorkoutsByGender);
-
-        gendersKeys.forEach(function(x){
-            groupedWorkoutsByGender[x].workoutsCount = groupedWorkoutsByGender[x].length;
-            groupedWorkoutsByGender[x].genderName = x;
-        });
-
         // set the ranges
         const x = d3.scale.ordinal().rangeRoundBands([0, width], 0.4);
         const y = d3.scale.linear().range([height, 0]);
@@ -94,45 +85,57 @@ angular.module('workouts.controllers').controller(STATISTICS_CONTROLLER, ($scope
         var yAxis = d3.svg.axis().scale(y).orient("left").ticks(10);
 
         // add the SVG element
-        var svg = d3.select("#workouts-by-gender-graph").append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        x.domain( _.chain(groupedWorkoutsByGender).map(d => { return d.genderName; }).value());
-        y.domain([0, d3.max(groupedWorkoutsByGender, d => { return d.workoutsCount; })]);
+        // get the recipes' data
+        Workout.workoutsByGender().$promise
+            .then(result => {
+                let groupedWorkouts = result;
+                groupedWorkouts.forEach(function (d) {
+                    d.Gender = d._id;
+                    d.WorkoutsCount = + d.count;
+                });
 
-        svg.append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(xAxis)
-            .selectAll("text")
-            .style("text-anchor", "end")
-            .attr("dx", "-.8em")
-            .attr("dy", "-.55em")
-            .attr("transform", "rotate(-90)");
+                // scale the range of the data
+                x.domain(data.map(d => { return d.Gender; }));
+                y.domain([0, d3.max(data, d => { return d.WorkoutsCount; })]);
 
-        svg.append("g")
-            .attr("class", "y axis")
-            .call(yAxis)
-            .append("text")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 5)
-            .attr("dy", ".71em")
-            .style("text-anchor", "end")
-            .text("Workouts Amount");
+                // add axis
+                svg.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis)
+                    .selectAll("text")
+                    .style("text-anchor", "end")
+                    .attr("dx", "-.8em")
+                    .attr("dy", "-.55em")
+                    .attr("transform", "rotate(-90)");
 
-        svg.selectAll("bar")
-            .data(groupedWorkoutsByGender)
-            .enter()
-            .append("rect")
-            .attr("class", "bar")
-            .attr("x", function (d) { return x(d.genderName); })
-            .attr("width", x.rangeBand())
-            .attr("y", function (d) { return y(d.workoutsCount); })
-            .attr("height", function (d) { return height - y(d.workoutsCount); });
-    }
+                svg.append("g")
+                    .attr("class", "y axis")
+                    .call(yAxis)
+                    .append("text")
+                    .attr("transform", "rotate(-90)")
+                    .attr("y", 5)
+                    .attr("dy", ".71em")
+                    .style("text-anchor", "end")
+                    .text("WorkoutsCount");
+
+                // Add bar chart
+                svg.selectAll("bar")
+                    .data(data)
+                    .enter()
+                    .append("rect")
+                    .attr("class", "bar")
+                    .attr("x", function (d) { return x(d.Gender); })
+                    .attr("width", x.rangeBand())
+                    .attr("y", function (d) { return y(d.WorkoutsCount); })
+                    .attr("height", function (d) { return height - y(d.WorkoutsCount); });
+            });
+        }
     });
 
 export default STATISTICS_CONTROLLER;

@@ -8,9 +8,9 @@ angular.module('workouts.services')
             method: 'GET',
             url: 'api/workouts/:id/recommended'
         },
-        byUsername: {
+        workoutsByGender: {
             method: 'GET',
-            url: 'api/workouts/byUsername',
+            url: 'api/workouts/workoutsByGender',
             isArray: true
         },
     }));

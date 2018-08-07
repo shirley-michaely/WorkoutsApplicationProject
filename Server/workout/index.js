@@ -12,8 +12,8 @@ export default io => {
     router.get('/', controller.index);
     router.get('/:id', controller.get);
 
-    // Recommended
     router.get('/:id/recommended', controller.getRecommendedWorkouts);
+    router.get('/workoutsByGender', controller.getWorkoutsByGender);
 
     // Insert, update, delete
     router.post('/',controller.create(io))
