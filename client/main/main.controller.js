@@ -4,8 +4,44 @@ import socketIO from 'socket.io-client';
 
 const CONTROLLER = 'mainController';
 
-angular.module('workouts.controllers').controller(CONTROLLER, ($scope, $sce, Workout, LoggedInUser, $mdDialog) => {
+angular.module('workouts.controllers').controller(CONTROLLER, ($scope, $sce, Workout, LoggedInUser, $mdDialog, User) => {
     LoggedInUser.ensureUserIsLogged();
+
+    $scope.filters = {
+        workoutsFilters: ['title', 'description', 'gender'],
+        usersFilters: ['firstname', 'lastname', 'gender']
+    }
+
+    $scope.searchWorkout = () => {
+        const chosenFilter = $scope.workoutsSearchFilter;
+        let searchString = chosenFilter ? $scope.workoutsSearchString : '';
+
+        return Workout.query({ term: searchString, filter: chosenFilter }).$promise
+            .then(result => {
+                $scope.workouts = result;
+            });
+    };
+
+    $scope.searchUser = () => {
+        $scope.workouts = Workout.query();
+
+        const chosenFilter = $scope.usersSearchFilter;
+        let searchString = chosenFilter ? $scope.usersSearchString : '';
+
+        return User.query({ term: searchString, filter: chosenFilter }).$promise
+            .then(result => {
+                const filteredUsers = result;
+
+                if (!filteredUsers || !filteredUsers.length)
+                {
+                    return;
+                }
+
+                const filteredUsersNames = filteredUsers.map(x => `${x.firstname} ${x.lastname}`);
+
+                $scope.workouts = $scope.workouts.filter(x => _.includes(filteredUsersNames, x.author));
+            });
+    };
 
     const loggedUser = LoggedInUser.get()._id;
 

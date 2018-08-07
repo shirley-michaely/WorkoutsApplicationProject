@@ -1,5 +1,50 @@
 <md-content class="main" flex layout="column">
-
+    <div class="filters-area" layout="row" flex>
+        <div layout="column" flex="50" style="border-right: 1px solid lightgray; height:80px; margin-right: 15px;">
+            <div layout="row">
+                <span>Search workouts:</span>
+            </div>
+            <div layout="row">
+                <md-input-container>
+                    <label>Workout filter</label>
+                    <md-select ng-model="workoutsSearchFilter">
+                        <md-option ng-value="">None</md-option>
+                        <md-option ng-repeat="workoutFilter in filters.workoutsFilters" ng-value="workoutFilter">{{workoutFilter}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <input type="text" placeholder="Search string" ng-model="workoutsSearchString"></input>
+                </md-input-container>
+                <md-button class="mdi md-fab md-mini" ng-click="searchWorkout()">
+                    <i class="mdi mdi-magnify mdi-24px">
+                        <md-tooltip>Search for workouts</md-tooltip>
+                    </i>
+                </md-button>
+            </div>
+        </div>
+        <div layout="column" flex="50">
+            <div layout="row">
+                <span>Search by users:</span>
+            </div>
+            <div layout="row">
+                <md-input-container>
+                    <label>Users filter</label>
+                    <md-select ng-model="usersSearchFilter">
+                        <md-option ng-value="">None</md-option>
+                        <md-option ng-repeat="userFilter in filters.usersFilters" ng-value="userFilter">{{userFilter}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <input type="text" placeholder="Search string" ng-model="usersSearchString"></input>
+                </md-input-container>
+                <md-button class="mdi md-fab md-mini" ng-click="searchUser()">
+                    <i class="mdi mdi-magnify mdi-24px">
+                        <md-tooltip>Search by users</md-tooltip>
+                    </i>
+                </md-button>
+            </div>
+        </div>
+    </div>
     <md-list flex>
         <md-card ng-if="recomendedWorkout" layout-padding flex>
             <md-card-header-text class="recommended-header" layout="row">
