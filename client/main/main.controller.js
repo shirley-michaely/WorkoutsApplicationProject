@@ -4,8 +4,16 @@ const CONTROLLER = 'mainController';
 
 angular.module('workouts.controllers').controller(CONTROLLER, ($scope, $sce, Workout, LoggedInUser) => {
     LoggedInUser.ensureUserIsLogged();
+    const loggedUser = LoggedInUser.get()._id;
 
     $scope.workouts = Workout.query();
+
+    Workout.recommended({
+        id: loggedUser
+    }).$promise
+        .then(result => {
+            $scope.recomendedWorkout = result;
+        });
 
     $scope.getVideoUrl = workout => $sce.trustAsResourceUrl(workout.video);
 

@@ -14,7 +14,7 @@ export default {
             gender: genders[0],
             video: "https://www.youtube.com/embed/_l3ySVKYVJ8",
             date: new Date('August 3, 2018 12:01:00'),
-            author: 'Yakir'
+            author: 'Yakir Kadkoda'
         },
             {
                 title: 'Push-up with Single-leg Raise',
@@ -27,7 +27,7 @@ export default {
                 video: "https://www.youtube.com/embed/BBdRzqsYX1g",
                 gender: genders[2],
                 date: new Date('August 3, 2018 12:01:00'),
-                author: 'Liron'
+                author: 'Liron Broyer'
             },
             {
                 title: 'Side Plank',
@@ -39,7 +39,54 @@ export default {
                 video: "https://www.youtube.com/embed/K2VljzCC16g",
                 gender: genders[1],
                 date: new Date('August 3, 2018 12:01:00'),
-                author: 'Shirley'
-            }];
+                author: 'Shirley Michaely'
+            },
+            {
+                title: 'Barbell Bench Press',
+                difficulty: 7,
+                description: "Lie back on a flat bench. Using a medium width grip (a grip that creates a 90-degree angle in the middle of the movement between the forearms and the upper arms), lift the bar from the rack and hold it straight over you with your arms locked. This will be your starting position.\n" +
+                    "From the starting position, breathe in and begin coming down slowly until the bar touches your middle chest.\n" +
+                    "After a brief pause, push the bar back to the starting position as you breathe out. Focus on pushing the bar using your chest muscles. Lock your arms and squeeze your chest in the contracted position at the top of the motion, hold for a second and then start coming down slowly again. Tip: Ideally, lowering the weight should take about twice as long as raising it.\n" +
+                    "Repeat the movement for the prescribed amount of repetitions.\n" +
+                    "When you are done, place the bar back in the rack.\n" +
+                    "Caution:\n" +
+                    "\n" +
+                    "If you are new at this exercise, it is advised that you use a spotter. If no spotter is available, then be conservative with the amount of weight used.\n" +
+                    "\n" +
+                    "Also, beware of letting the bar drift too far forward. You want the bar to touch your middle chest and nowhere else.\n" +
+                    "\n" +
+                    "Don't bounce the weight off your chest. You should be in full control of the barbell at all times.",
+                video: "https://www.youtube.com/embed/XSza8hVTlmM",
+                gender: genders[0],
+                date: new Date('August 5, 2015 12:01:00'),
+                author: 'Shirley Michaely'
+            },
+            {
+                title: 'The Shoulder Press',
+                difficulty: 9,
+                description: `While holding a dumbbell in each hand, sit on a military press bench or utility bench that has back support. Place the dumbbells upright on top of your thighs.
+Now raise the dumbbells to shoulder height one at a time using your thighs to help propel them up into position.
+Make sure to rotate your wrists so that the palms of your hands are facing forward. This is your starting position.
+Now, exhale and push the dumbbells upward until they touch at the top.
+Then, after a brief pause at the top contracted position, slowly lower the weights back down to the starting position while inhaling.
+Repeat for the recommended amount of repetitions.
+Variations: You can perform the exercise standing or sitting on a regular flat bench. For people with lower back problems, the version described is the recommended one.
+
+You can also perform the exercise as Arnold Schwarzenegger used to do it, which is to start holding the dumbbells with a supinated grip (palms facing you) in front of your shoulders and then, as you start pushing up, you align the dumbbells in the starting position described on step 3 by rotating your wrists and touch the dumbbells at the top. As you come down, then you would go back to the starting position by rotating the wrist throughout the lowering portion until the palms of your hands are facing you. This variation is called the Arnold Press. However, it is not recommended if you have rotator cuff problems.`,
+                video: "https://www.youtube.com/embed/xe19t2_6yis",
+                gender: genders[2],
+                date: new Date('April 23, 2016 13:01:00'),
+                author: 'Yakir Kadkoda'
+            },
+            {
+                title: 'The Medicine-Ball Clean',
+                difficulty: 4,
+                description: `Hold a medicine ball in front of your hips. Stand with your feet slightly wider than shoulder-width apart. Keep your chin parallel to floor with a natural arch in your back.Brace your core and slowly lower your hips toward the floor until your knees form a 90-degree angle. Quickly drive your hips upward, fully extending your knees and rising up on the balls of your feet, swinging the ball close to your body until it comes directly under your chin and elbows to form a 90-degree angle. Quickly drop your hips back into a deep squat position until the back of your legs become parallel to the floor. Pause at bottom.`,
+                video: "https://www.youtube.com/embed/-nk0GqeSTJs",
+                gender: genders[1],
+                date: new Date('August 7, 2014 12:01:00'),
+                author: 'Liron Broyer'
+            },
+        ];
     }
 };

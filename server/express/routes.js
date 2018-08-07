@@ -5,7 +5,7 @@ import workout from '../workout';
 
 export default (app, io) => {
     app.use('/api/users', user);
-    app.use('/api/workouts', workout);
+    app.use('/api/workouts', workout(io));
 
     // All undefined api routes should return a 404
     app.route('/:url(api/*)')
