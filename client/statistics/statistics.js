@@ -9,7 +9,7 @@ angular.module('workouts.controllers')
     .config($stateProvider => {
         $stateProvider
             .state('layout.statistics', {
-                url: '/',
+                url: '/statistics',
                 template,
                 controller
             });
