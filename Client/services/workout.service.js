@@ -13,4 +13,7 @@ angular.module('workouts.services')
             url: 'api/workouts/workoutsByGender',
             isArray: true
         },
+        update: {
+            method: 'PUT'
+        },
     }));

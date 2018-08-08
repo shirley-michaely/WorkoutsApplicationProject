@@ -11,5 +11,6 @@ require('./login/login');
 require('./statistics/statistics');
 require('./event/event');
 require('./filters/index');
+require('./admin/admin');
 
 export default CONTROLLERS_MODULE;

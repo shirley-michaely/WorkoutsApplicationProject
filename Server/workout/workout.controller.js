@@ -35,6 +35,7 @@ export function update(io) {
             workout.difficulty = body.difficulty;
             workout.gender = body.gender;
             workout.video = body.video;
+            workout.date = body.date;
 
             return workout.save();
         })

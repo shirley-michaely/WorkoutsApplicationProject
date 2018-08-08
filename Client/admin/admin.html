@@ -1,0 +1,54 @@
+<md-content class="main" flex layout="column">
+    <md-list flex>
+        <div flex layout="row" layout-wrap layout-align="space-around">
+            <md-list-item ng-repeat="workout in workouts | orderBy: '-date' track by workout._id" flex>
+                <md-card layout-padding flex>
+                    <md-card-header-text layout="row">
+                        <span class="md-headline">{{workout.title}}</span>
+                        <div layout="row" class="buttons" flex layout-align="end start">
+                            <md-button class="md-icon-button" aria-label="Edit" ng-click="openEditWorkoutDialog(workout)">
+                                <i class="mdi mdi-pencil mdi-24px">
+                                    <md-tooltip md-direction="right">Edit the workout</md-tooltip>
+                                </i>
+                            </md-button>
+                            <md-button class="md-icon-button" aria-label="Delete" ng-click="deleteWorkout(workout)">
+                                <i class="mdi mdi-delete mdi-24px">
+                                    <md-tooltip md-direction="right">Delete the workout</md-tooltip>
+                                </i>
+                            </md-button>
+                        </div>
+                    </md-card-header-text>
+                    <md-card-title>
+                        <md-card-title-text layout="row">
+                            <i ng-class="getSuitableIconDescription(workout)">
+                                <md-tooltip>Recommended for {{workout.gender}}</md-tooltip>
+                            </i>
+                            <span>Difficulty: {{workout.difficulty}} ({{workout.difficulty | level}})</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <div layout="row">
+                            <div class="workout-description" layout="column" flex>
+                                <span>{{workout.description}}</span>
+                            </div>
+                            <div class="workout-video-container" layout="column" flex>
+                                <iframe width="420" height="315" ng-src="{{getVideoUrl(workout)}}" frameborder="1"
+                                        allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </md-card-content>
+                    <div layout="row" class="external-description" flex>
+                        <div layout="column" flex>
+                            <a ng-href="https://twitter.com/intent/tweet?screen_name=Workout&text=An amazing workout {{workout.title}} ! {{workout.description}}"
+                               class="twitter-mention-button" data-show-count="false">Tweet to Workout</a>
+                            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        </div>
+                        <div layout="column" flex>
+                            <span class="author-description">Written by: {{workout.author}}, {{workout.date | amCalendar}}</span>
+                        </div>
+                    </div>
+                </md-card>
+            </md-list-item>
+        </div>
+    </md-list>
+</md-content>

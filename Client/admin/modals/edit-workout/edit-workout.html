@@ -1,0 +1,52 @@
+<md-dialog flex="50">
+    <md-toolbar class="md-primary">
+        <div class="md-toolbar-tools">
+            <h2>{{workout.title}}</h2>
+            <md-button class="md-icon-button md-accent" ng-click="cancel()">
+                <i class="mdi mdi-close mdi-24px"></i>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <form>
+                <div layout="column" flex>
+                    <md-input-container>
+                        <input placeholder="Author" md-maxlength="50" maxlength="50" type="text" ng-model="workout.author" required>
+                    </md-input-container>
+                    <md-input-container>
+                        <input placeholder="Workout title" md-maxlength="50" maxlength="50" type="text" ng-model="workout.title" required>
+                    </md-input-container>
+                </div>
+                <div layout="row" flex>
+                    <div layout="column" flex="50">
+                        <md-input-container>
+                            <input placeholder="Difficulty" type="number" ng-model="workout.difficulty" step="1" min="1" max="10">
+                        </md-input-container>
+                    </div>
+                    <div layout="column" flex="50">
+                        <md-input-container flex>
+                            <label>Recommended Gender</label>
+                            <md-select  ng-model="workout.gender">
+                                <md-option ng-repeat="gender in genders" value="{{gender}}">{{gender}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" flex>
+                    <md-input-container flex>
+                        <input placeholder="Demonstration Video URL" type="text" ng-model="workout.video">
+                    </md-input-container>
+                </div>
+                <div layout="column">
+                    <md-input-container>
+                        <textarea md-maxlength="1500" maxlength="1500" rows="15" placeholder="workout description" type="text" ng-model="workout.description" required></textarea>
+                    </md-input-container>
+                </div>
+            </form>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <md-button class="md-primary" ng-click="saveWorkout()">Submit</md-button>
+    </md-dialog-actions>
+</md-dialog>
